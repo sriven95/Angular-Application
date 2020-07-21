@@ -1,0 +1,100 @@
+<div class="center-padding mat-elevation-z8">
+
+        <fieldset class="border p-10" style="border-color:orangered">
+          <mat-tab-group>
+            <mat-tab label="Table Data">
+          <div class="row col-md-6 ml-2">
+            <div class="example-header">
+              <mat-grid-list>
+                <mat-grid-tile>
+                  <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search">
+                  </mat-form-field>
+                </mat-grid-tile>
+              </mat-grid-list>
+          </div>
+
+        </div>
+            <mat-table class="shadow" #table [dataSource]="dataSource" matSort >
+
+                <ng-container matColumnDef="_id">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                  <mat-cell *matCellDef="let opt"><a class="btn btn-sm btn-outline-secondary" [routerLink]="['/edit', opt._id]">Edit </a></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="luggage">
+                  <mat-header-cell *matHeaderCellDef>Roof Luggage</mat-header-cell>
+                  <mat-cell *matCellDef="let opt" [matTooltip]="opt.luggage">{{opt.luggage}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="count">
+                  <mat-header-cell *matHeaderCellDef>More than 4 passengers</mat-header-cell>
+                  <mat-cell *matCellDef="let opt" [matTooltip]="opt.count">{{opt.count}}</mat-cell>
+                </ng-container>
+              <ng-container matColumnDef="tripType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Type of Trip</mat-header-cell>
+                <mat-cell *matCellDef="let opt" [matTooltip]="opt.tripType">{{opt.tripType}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+                <mat-cell *matCellDef="let opt" [matTooltip]="opt.status">{{opt.status}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="fromDate">
+                <mat-header-cell *matHeaderCellDef>Travel Date</mat-header-cell>
+                <mat-cell *matCellDef="let opt" [matTooltip]="opt.fromDate | date">{{opt.fromDate | date}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="toDate">
+                <mat-header-cell *matHeaderCellDef>Return Date</mat-header-cell>
+                <mat-cell *matCellDef="let opt" [matTooltip]="opt.toDate | date">{{opt.toDate | date}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="fromPlace">
+                <mat-header-cell *matHeaderCellDef>Boarding City</mat-header-cell>
+                <mat-cell *matCellDef="let opt" [matTooltip]="opt.fromPlace">{{opt.fromPlace}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="toPlace">
+                <mat-header-cell *matHeaderCellDef>Destination</mat-header-cell>
+                <mat-cell *matCellDef="let opt" [matTooltip]="opt.toPlace">{{opt.toPlace}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="car_name">
+                <mat-header-cell *matHeaderCellDef>Car</mat-header-cell>
+                <mat-cell *matCellDef="let opt" [matTooltip]="opt.car_name">{{opt.car_name}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="timing">
+                <mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
+                <mat-cell *matCellDef="let opt" [matTooltip]="opt.timing">{{opt.timing}}</mat-cell>
+              </ng-container>
+                <mat-header-row *matHeaderRowDef="colValue"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: colValue;"></mat-row>
+              </mat-table>
+              <mat-paginator #MatPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20, 30,50]" [showFirstLastButtons]="true"></mat-paginator>
+          </mat-tab>
+          <mat-tab label="Expansion Panel Data">
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let item of details">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{item.user_email}}
+                  </mat-panel-title>
+                  <mat-panel-description >
+                    <div style="text-align: right;">
+                      {{details.indexOf(item) + 1}}
+                    </div>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div><mat-label> Car : </mat-label>
+                  {{item.car_name}}
+                </div>
+                <div><mat-label> Time : </mat-label>
+                  {{item.timing}}
+                </div>
+                <div><mat-label> From Place : </mat-label>
+                  {{item.fromPlace}}
+                </div>
+                <div><mat-label> To Place : </mat-label>
+                  {{item.toPlace}}
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-tab>
+          </mat-tab-group>
+        </fieldset>
+  </div>

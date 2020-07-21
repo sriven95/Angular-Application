@@ -1,0 +1,103 @@
+<mat-card style="margin-top: 55px;" >     
+  <mat-card-content style="margin-top: 15px; margin-bottom: 15px;">    
+    <mat-card-title>    
+      New Booking
+    </mat-card-title>    
+  
+      <form  [formGroup]="myForm" #formData =ngForm novalidate>        
+        <div class="form-row">
+          <div class="align-items-center ml-5" >
+            <mat-button-toggle-group style="margin-left: 30px;" name="fontStyle" aria-label="Font Style"  formControlName="tripType" (change)="tripType($event)">
+              <mat-button-toggle *ngFor="let season of radiobtns2" [value]="season">{{season}}</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+        <br/>
+        <div class="form-row">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+             <mat-select [(ngModel)]="fCity"  [ngModelOptions]="{standalone: true}" placeholder="Select City"  style="font-family: 'Times New Roman', Times, serif;"  formControlName="fromPlace">
+               <mat-option class="mat-primary"style="font-family: 'Times New Roman', Times, serif;" value="">Select City</mat-option>
+               <mat-option  class="mat-primary"style="font-family: 'Times New Roman', Times, serif;" *ngFor="let val of fromPlaces" value={{val}}>{{val}}
+               </mat-option>
+             </mat-select>
+            </mat-form-field>
+          </div>
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+               <mat-select [(ngModel)]="tCity"  [ngModelOptions]="{standalone: true}" placeholder="Select Destination City"  style="font-family: 'Times New Roman', Times, serif;"  formControlName="toPlace">
+                 <mat-option class="mat-primary"style="font-family: 'Times New Roman', Times, serif;" value="">Select Destination City</mat-option>
+                 <mat-option  class="mat-primary"style="font-family: 'Times New Roman', Times, serif;" *ngFor="let val of toPlaces" value={{val}}>{{val}}
+                 </mat-option>
+               </mat-select>
+              </mat-form-field>
+            </div>
+            <span  style="margin-left: 80px;" *ngIf="fCity === tCity"><i class="text-danger">You've selected same city</i></span>
+       </div>
+       <div class="form-row">
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input matInput [min]="minDate" [(ngModel)]="toMinDate" [ngModelOptions]="{standalone : true}" [matDatepicker]="startpicker" [(ngModel)]="stime" matTooltip="Travel Date" formControlName="fromDate" placeholder="Travel Date">
+            <mat-datepicker-toggle matSuffix [for]="startpicker" ></mat-datepicker-toggle>
+            <mat-datepicker #startpicker ></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div *ngIf="!hideTo" class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input matInput [min]="toMinDate" [matDatepicker]="startpicker2" matTooltip="Return Date" formControlName="toDate"  [(ngModel)]="etime"  placeholder="Return Date">
+            <mat-datepicker-toggle matSuffix [for]="startpicker2" ></mat-datepicker-toggle>
+            <mat-datepicker #startpicker2 ></mat-datepicker>
+          </mat-form-field>
+        </div>
+       </div>
+       <div class="form-row">
+             <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+               <mat-select placeholder="Select Car"  style="font-family: 'Times New Roman', Times, serif;"  formControlName="car_name">
+                 <mat-option class="mat-primary"style="font-family: 'Times New Roman', Times, serif;" value="">Select Car</mat-option>
+                 <mat-option  class="mat-primary"style="font-family: 'Times New Roman', Times, serif;" *ngFor="let val of carNames" value={{val}}>{{val}}
+                 </mat-option>
+               </mat-select>
+              </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                 <mat-select placeholder="Availability"  style="font-family: 'Times New Roman', Times, serif;"  formControlName="timing">
+                   <mat-option class="mat-primary"style="font-family: 'Times New Roman', Times, serif;" value="">Select Time</mat-option>
+                   <mat-option  class="mat-primary"style="font-family: 'Times New Roman', Times, serif;" *ngFor="let val of timings" value={{val}}>{{val}}
+                   </mat-option>
+                 </mat-select>
+                </mat-form-field>
+                </div>
+            </div>
+            <div class="form-row">
+              <div style="margin-left: 80px;">
+                <mat-checkbox formControlName="count">More than 4 passengers ?</mat-checkbox>
+              </div>
+                <div style="margin-left: 425px;">
+                  <mat-label>Roof Luggage Carrier : </mat-label>
+                  <mat-radio-group aria-labelledby="example-radio-group-label" formControlName="luggage" class="example-radio-group">
+                    <mat-radio-button  value="Required">Required</mat-radio-button><pre> </pre><mat-radio-button value="Not Required">Not Required</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+            </div>
+            <br>
+            <div style="width: 80%;" class="container p-3 my-3 bg-dark text-white"><h1>License cannot be edited</h1></div>
+
+            <div class="d-flex justify-content-center" *ngIf="!isAdmin" >
+                <button type="submit" class="btn btn-success" [disabled]="!formData.valid" (click)="submit()">Update</button><pre>  </pre>
+                <button class="btn btn-danger" [disabled]="!formData.valid"  (click)="delete()">Cancel Booking</button>
+            </div>
+            
+            <div class="d-flex justify-content-center" *ngIf="isAdmin" >
+              <button type="submit" class="btn btn-success" [disabled]="!formData.valid" (click)="approve()">Approve Booking</button><pre>  </pre>
+              <button class="btn btn-danger" [disabled]="!formData.valid"  (click)="delete()">Cancel Booking</button>
+          </div>
+      </form>
+      </mat-card-content>
+</mat-card>
+
+
+
+
+
