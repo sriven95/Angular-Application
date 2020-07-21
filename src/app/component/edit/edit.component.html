@@ -1,5 +1,5 @@
-<mat-card style="margin-top: 55px;" >     
-  <mat-card-content style="margin-top: 15px; margin-bottom: 15px;">    
+<mat-card style="margin-top: 30px;" >     
+  <mat-card-content style="margin-top: 10px; margin-bottom: 10px;">    
     <mat-card-title>    
       New Booking
     </mat-card-title>    
@@ -71,17 +71,16 @@
                 </div>
             </div>
             <div class="form-row">
-              <div style="margin-left: 80px;">
+              <div class="col-md-6">
+                <mat-label>Roof Luggage Carrier : </mat-label>
+                <mat-radio-group aria-labelledby="example-radio-group-label" formControlName="luggage" class="example-radio-group">
+                  <mat-radio-button  value="Required">Required</mat-radio-button><pre> </pre><mat-radio-button value="Not Required">Not Required</mat-radio-button>
+                </mat-radio-group>                
+              </div>
+              <div class="col-md-6">
                 <mat-checkbox formControlName="count">More than 4 passengers ?</mat-checkbox>
               </div>
-                <div style="margin-left: 425px;">
-                  <mat-label>Roof Luggage Carrier : </mat-label>
-                  <mat-radio-group aria-labelledby="example-radio-group-label" formControlName="luggage" class="example-radio-group">
-                    <mat-radio-button  value="Required">Required</mat-radio-button><pre> </pre><mat-radio-button value="Not Required">Not Required</mat-radio-button>
-                  </mat-radio-group>
-                </div>
-            </div>
-            <br>
+             </div>
             <div style="width: 80%;" class="container p-3 my-3 bg-dark text-white"><h1>License cannot be edited</h1></div>
 
             <div class="d-flex justify-content-center" *ngIf="!isAdmin" >

@@ -70,38 +70,37 @@
                 </mat-form-field>
                 </div>
             </div>
-            <div class="form-row">
-              <div style="margin-left: 80px;">
-                <mat-checkbox formControlName="count">More than 4 passengers ?</mat-checkbox>
-              </div>
-                <div style="margin-left: 425px;">
-                  <mat-label>Roof Luggage Carrier : </mat-label>
-                  <mat-radio-group aria-labelledby="example-radio-group-label" formControlName="luggage" class="example-radio-group">
-                    <mat-radio-button  value="Required">Required</mat-radio-button><pre> </pre><mat-radio-button value="Not Required">Not Required</mat-radio-button>
-                  </mat-radio-group>
-                </div>
-            </div>
-            <br>
+            
             <div class="form-row">
               <div class="col-md-6">
-                <mat-label style="margin-left:80px;">Upload License Copy : </mat-label>
+                <mat-label>Roof Luggage Carrier : </mat-label>
+                <mat-radio-group aria-labelledby="example-radio-group-label" formControlName="luggage" class="example-radio-group">
+                  <mat-radio-button  value="Required">Required</mat-radio-button><pre> </pre><mat-radio-button value="Not Required">Not Required</mat-radio-button>
+                </mat-radio-group>                
+              </div>
+              <div class="col-md-6">
+                <mat-checkbox formControlName="count">More than 4 passengers ?</mat-checkbox>
+              </div>
+             </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <mat-label style="margin-left:60px;">Upload License Copy : </mat-label>
                 <label for="file1" class="btn btn-primary">Select Image</label>          
                 <input  formControlName="License1" type="file" style="visibility:hidden;" id="file1" name="image" multiple (change)="selectImage($event)"/>
                 <button mat-raised-button color="primary" (click)="onSubmit()">Upload</button>
               </div>
               <div *ngIf="days" class="col-md-6">
-                <mat-label>Upload License Copy : </mat-label>    
+                <mat-label style="margin-left:70px;">Upload License Copy : </mat-label>    
                 <label for="file" class="btn btn-primary">Select Image</label>          
                   <input  formControlName="License2" style="visibility:hidden;" id="file" type="file" name="image" multiple (change)="selectImage1($event)"/>
-                  
                   <button mat-raised-button color="primary" (click)="onSubmit1()">Upload</button>        
               </div>
             </div>
+            <br>
             <div class="d-flex justify-content-center">
               <button mat-raised-button color="primary" [disabled]="!formData.valid" (click)="submit()" >Submit</button><pre>   </pre>
               <button mat-raised-button class="btn btn-danger" (click)="formData.reset()">Clear</button>   
             </div>
-           
       </form>
       </mat-card-content>
 </mat-card>
