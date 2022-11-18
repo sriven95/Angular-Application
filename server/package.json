@@ -42,7 +42,7 @@
     "node-sspi": "^0.2.8",
     "nodemailer": "^6.4.2",
     "open": "^7.0.0",
-    "protractor": "^5.4.2",
+    "protractor": "^5.4.4",
     "pug": "^2.0.3",
     "sendmail": "^1.6.1",
     "to-csv": "^0.1.1",
